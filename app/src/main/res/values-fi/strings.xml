@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Celatum</string>
+    <string name="no_bio_features_available">Laitteen biotunnistustoiminnot ei ole saatavilla.</string>
+    <string name="no_bio_enrolled">Ei biotunnisteita saatavilla.</string>
+</resources>

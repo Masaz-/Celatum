@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".DetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@drawable/item_bg">
+
+        <TextView
+            android:id="@+id/t_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/detail_title"
+            android:text="@string/title" />
+
+        <EditText
+            android:id="@+id/detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/description"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/t_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/detail_description"
+            android:text="@string/description" />
+
+        <EditText
+            android:id="@+id/detail_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/description"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:justifyContent="space_around">
+            <Space
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"/>
+            <ImageButton
+                android:id="@+id/type_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/note"
+                android:src="@drawable/baseline_note_24" />
+            <ImageButton
+                android:id="@+id/type_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/card"
+                android:src="@drawable/baseline_credit_card_24" />
+            <ImageButton
+                android:id="@+id/type_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/key"
+                android:src="@drawable/baseline_key_24" />
+            <ImageButton
+                android:id="@+id/type_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/account"
+                android:src="@drawable/baseline_person_24" />
+            <ImageButton
+                android:id="@+id/type_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/link"
+                android:src="@drawable/baseline_link_24" />
+            <Space
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:justifyContent="space_between">
+            <Button
+                android:id="@+id/detail_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/delete"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/detail_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/save"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+</LinearLayout>
