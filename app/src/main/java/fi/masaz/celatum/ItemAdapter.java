@@ -33,28 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Item item = itemList.get(position);
         holder.mItemTitle.setText(item.title);
-
-        int icon;
-
-        switch (item.icon) {
-            case "credit_card":
-                icon = R.drawable.baseline_credit_card_24;
-                break;
-            case "key":
-                icon = R.drawable.baseline_key_24;
-                break;
-            case "person":
-                icon = R.drawable.baseline_person_24;
-                break;
-            case "link":
-                icon = R.drawable.baseline_link_24;
-                break;
-            default:
-                icon = R.drawable.baseline_note_24;
-                break;
-        }
-
-        holder.mImageView.setImageResource(icon);
+        holder.mImageView.setImageResource(Tools.getIcon(item.icon));
 
         holder.itemView.setOnClickListener(v -> {
             if (onItemClickListener != null) {

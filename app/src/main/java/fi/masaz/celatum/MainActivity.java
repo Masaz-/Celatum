@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,11 +41,15 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_main);
 
+        TextView mNoItems = findViewById(R.id.main_no_items);
+
         mItemList = findViewById(R.id.item_list);
         mItemList.setLayoutManager(new LinearLayoutManager(this));
 
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "celatum").allowMainThreadQueries().build();
         List<Item> items = db.itemDao().getAll();
+
+        mNoItems.setVisibility(items.isEmpty() ? View.VISIBLE : View.GONE);
 
         itemAdapter = new ItemAdapter(items, this);
         mItemList.setAdapter(itemAdapter);
