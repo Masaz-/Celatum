@@ -14,7 +14,7 @@ import java.util.List;
 import fi.masaz.celatum.room.Item;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
-    private final List<Item> itemList;
+    private List<Item> itemList;
     private final OnItemClickListener onItemClickListener;
 
     public ItemAdapter(List<Item> itemList, OnItemClickListener listener) {
@@ -45,6 +45,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     @Override
     public int getItemCount() {
         return itemList.size();
+    }
+
+    public void setItemList(List<Item> newItemList) {
+        this.itemList = newItemList;
+        notifyDataSetChanged();  // Notify the adapter that the data has changed
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {

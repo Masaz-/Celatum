@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     private ItemAdapter itemAdapter;
     private AppDatabase db;
     private String tag = "celatum-main";
+    private List<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         mItemList.setLayoutManager(new LinearLayoutManager(this));
 
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "celatum").allowMainThreadQueries().build();
-        List<Item> items = db.itemDao().getAll();
+        items = db.itemDao().getAll();
 
         mNoItems.setVisibility(items.isEmpty() ? View.VISIBLE : View.GONE);
 
@@ -97,5 +98,14 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(ITEM_ID, item.id);
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(tag, "onResume()");
+
+        items = db.itemDao().getAll();
+        itemAdapter.setItemList(items);
     }
 }

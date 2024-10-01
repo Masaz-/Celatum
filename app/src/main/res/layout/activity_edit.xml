@@ -20,6 +20,8 @@
             android:labelFor="@+id/edit_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
             android:text="@string/title" />
 
         <EditText
@@ -27,12 +29,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="@string/description"
+            android:background="@drawable/input_bg"
+            android:padding="10dp"
             android:inputType="text" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:labelFor="@+id/edit_description"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
             android:text="@string/description" />
 
         <EditText
@@ -41,6 +47,8 @@
             android:layout_height="wrap_content"
             android:autofillHints="@string/description"
             android:gravity="start|top"
+            android:background="@drawable/input_bg"
+            android:padding="10dp"
             android:inputType="textMultiLine" />
 
         <com.google.android.flexbox.FlexboxLayout
