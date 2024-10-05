@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -36,6 +37,7 @@ android {
 }
 
 dependencies {
+    val coreVersion = "1.13.1"
     val roomVersion = "2.6.1"
     val biometricVersion = "1.1.0"
     val activityVersion = "1.9.2"
@@ -44,17 +46,18 @@ dependencies {
     val constraintLayoutVersion = "2.1.4"
     val flexboxVersion = "3.0.0"
     val recycleViewVersion = "1.3.2"
-    val navigationVersion = "2.8.1"
+    val navigationVersion = "2.8.2"
 
+    implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.biometric:biometric:$biometricVersion")
-    implementation("androidx.activity:activity:$activityVersion")
+    implementation("androidx.activity:activity-ktx:$activityVersion")
     implementation("androidx.appcompat:appcompat:$appCompatVersion")
     implementation("com.google.android.material:material:$materialVersion")
     implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
     implementation("com.google.android.flexbox:flexbox:$flexboxVersion")
     implementation("androidx.recyclerview:recyclerview:$recycleViewVersion")
-    implementation("androidx.navigation:navigation-fragment:$navigationVersion")
-    implementation("androidx.navigation:navigation-ui:$navigationVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")

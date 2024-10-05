@@ -17,4 +17,5 @@
     <string name="edit">Edit</string>
     <string name="delete_item">Deleting Item</string>
     <string name="are_you_sure_delete_item">Are you sure you want to delete this item?</string>
+    <string name="use_biometric_to_access_data">Use biometric to access data</string>
 </resources>

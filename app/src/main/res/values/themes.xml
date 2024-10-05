@@ -1,6 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Celatum" parent="Theme.AppCompat.DayNight.NoActionBar" />
-
+    <style name="Base.Theme.Celatum" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
     <style name="Theme.Celatum" parent="Base.Theme.Celatum" />
 </resources>
