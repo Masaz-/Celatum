@@ -2,9 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorBackground">#F6F8FA</color>
-    <color name="colorSecondaryBackground">#FFFFFF</color>
-    <color name="colorBorder">#FFFFFF</color>
+    <color name="colorBackground">#010409</color>
+    <color name="colorSecondaryBackground">#0D1117</color>
+    <color name="colorBorder">#2E343D</color>
     <color name="colorPrimary">#34495E</color>
     <color name="colorButtonText">#FFFFFF</color>
     <color name="colorPrimaryVariant">#2C3E50</color>
@@ -14,10 +14,10 @@
     <color name="colorAccent">#303F9F</color>
     <color name="colorButtonBackground">#34495E</color>
     <color name="colorButton">#FFFFFF</color>
-    <color name="colorPositive">#32CE74</color>
-    <color name="colorNegative">#E74C3C</color>
-    <color name="colorToggleButtonBackground">#F6F8FA</color>
+    <color name="colorPositive">#27AE60</color>
+    <color name="colorNegative">#C0392B</color>
+    <color name="colorToggleButtonBackground">#2E343D</color>
     <color name="colorToggleButtonActiveBackground">#3E9DDD</color>
-    <color name="colorIconColor">#000000</color>
-    <color name="colorIconInvertColor">#FFFFFF</color>
+    <color name="colorIconColor">#88FFFFFF</color>
+    <color name="colorIconInvertColor">#000000</color>
 </resources>

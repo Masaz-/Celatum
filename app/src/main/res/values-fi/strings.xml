@@ -3,4 +3,23 @@
     <string name="app_name">Celatum</string>
     <string name="no_bio_features_available">Laitteen biotunnistustoiminnot ei ole saatavilla.</string>
     <string name="no_bio_enrolled">Ei biotunnisteita saatavilla.</string>
+    <string name="yes">Kyllä</string>
+    <string name="item_icon">Kuvake</string>
+    <string name="title">Otsikko</string>
+    <string name="description">Sisältö</string>
+    <string name="save">Tallenna</string>
+    <string name="delete">Poista</string>
+    <string name="note">Muistio</string>
+    <string name="card">Kortti</string>
+    <string name="key">Avain</string>
+    <string name="link">Linkki</string>
+    <string name="account">Tili</string>
+    <string name="no_items">Ei kohteita</string>
+    <string name="add_item">Lisää</string>
+    <string name="edit">Muokkaa</string>
+    <string name="delete_item">Kohteen poisto</string>
+    <string name="are_you_sure_delete_item">Haluatko varmasti poistaa kohteen?</string>
+    <string name="use_biometric_to_access_data">Käytä biometristätunnistetta päästäksesi tietoihin</string>
+    <string name="no">Ei</string>
+    <string name="item_deleted">Kohde %1$s on poistettu</string>
 </resources>

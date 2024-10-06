@@ -10,9 +10,10 @@ import fi.masaz.celatum.ItemAdapter.ItemViewHolder
 import fi.masaz.celatum.room.Item
 
 class ItemAdapter(
-    private var itemList: List<Item>,
     private val onItemClickListener: OnItemClickListener?
 ) : RecyclerView.Adapter<ItemViewHolder>() {
+    private var itemList: List<Item> = mutableListOf()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
         return ItemViewHolder(view)

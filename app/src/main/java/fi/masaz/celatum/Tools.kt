@@ -6,9 +6,9 @@ object Tools {
 
         if (iconStr != null) {
             when (iconStr) {
-                "credit_card" -> icon = R.drawable.baseline_credit_card_24
+                "card" -> icon = R.drawable.baseline_credit_card_24
                 "key" -> icon = R.drawable.baseline_key_24
-                "person" -> icon = R.drawable.baseline_person_24
+                "account" -> icon = R.drawable.baseline_person_24
                 "link" -> icon = R.drawable.baseline_link_24
             }
         }
