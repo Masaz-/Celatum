@@ -5,20 +5,22 @@ plugins {
 }
 
 android {
-    namespace = "fi.masaz.celatum"
+    namespace = "tf.masaz.celatum"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "fi.masaz.celatum"
+        applicationId = "tf.masaz.celatum"
         minSdk = 29
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 10
+        versionName = "2.0"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            setProperty("archivesBaseName", "celatum-${defaultConfig.versionName}-${defaultConfig.versionCode}")
+
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -42,6 +44,7 @@ android {
 
 dependencies {
     val coreVersion = "1.13.1"
+    val securityVersion = "1.1.0-alpha06"
     val roomVersion = "2.6.1"
     val biometricVersion = "1.1.0"
     val activityVersion = "1.9.2"
@@ -53,12 +56,13 @@ dependencies {
     val navigationVersion = "2.8.2"
 
     implementation("androidx.core:core-ktx:$coreVersion")
+    implementation("androidx.security:security-crypto:$securityVersion")
     implementation("androidx.biometric:biometric:$biometricVersion")
     implementation("androidx.activity:activity-ktx:$activityVersion")
     implementation("androidx.appcompat:appcompat:$appCompatVersion")
     implementation("com.google.android.material:material:$materialVersion")
-    implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
     implementation("com.google.android.flexbox:flexbox:$flexboxVersion")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
     implementation("androidx.recyclerview:recyclerview:$recycleViewVersion")
     implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")

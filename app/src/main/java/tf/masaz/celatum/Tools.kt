@@ -1,4 +1,4 @@
-package fi.masaz.celatum
+package tf.masaz.celatum
 
 object Tools {
     fun getIcon(iconStr: String?): Int {

@@ -1,4 +1,4 @@
-package fi.masaz.celatum.room
+package tf.masaz.celatum.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

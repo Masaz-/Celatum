@@ -1,4 +1,4 @@
-package fi.masaz.celatum
+package tf.masaz.celatum
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fi.masaz.celatum.ItemAdapter.ItemViewHolder
-import fi.masaz.celatum.room.Item
+import tf.masaz.celatum.ItemAdapter.ItemViewHolder
+import tf.masaz.celatum.room.Item
+import tf.masaz.celatum.secret.Secret
 
 class ItemAdapter(
-    private val onItemClickListener: OnItemClickListener?
+    private val onItemClickListener: OnItemClickListener?,
+    private val secret: Secret
 ) : RecyclerView.Adapter<ItemViewHolder>() {
     private var itemList: List<Item> = mutableListOf()
 
@@ -21,10 +23,11 @@ class ItemAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = itemList[position]
-        holder.mItemTitle.text = item.title
+
+        holder.mItemTitle.text = secret.decryptText(item.title!!, item.titleIV!!)
         holder.mImageView.setImageResource(Tools.getIcon(item.icon))
 
-        holder.itemView.setOnClickListener { v: View? ->
+        holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(item)
         }
     }

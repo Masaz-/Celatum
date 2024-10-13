@@ -1,4 +1,4 @@
-package fi.masaz.celatum.room
+package tf.masaz.celatum.room
 
 import androidx.room.Dao
 import androidx.room.Delete

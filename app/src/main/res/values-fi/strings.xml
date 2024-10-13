@@ -22,4 +22,6 @@
     <string name="use_biometric_to_access_data">Käytä biometristätunnistetta päästäksesi tietoihin</string>
     <string name="no">Ei</string>
     <string name="item_deleted">Kohde %1$s on poistettu</string>
+    <string name="authentication_error">Biometrinen todennusvirhe: %1$s</string>
+    <string name="authentication_failed">"Biometrinen todennus epäonnistui "</string>
 </resources>

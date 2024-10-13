@@ -1,4 +1,4 @@
-package fi.masaz.celatum
+package tf.masaz.celatum
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,14 +9,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room.databaseBuilder
-import fi.masaz.celatum.room.AppDatabase
-import fi.masaz.celatum.room.Item
+import tf.masaz.celatum.room.AppDatabase
+import tf.masaz.celatum.room.Item
+import tf.masaz.celatum.secret.Secret
 import java.text.DateFormat
 import java.util.Date
 
 class DetailActivity : AppCompatActivity() {
     private val tag = "celatum-detail"
     private var item: Item? = null
+    private var secret: Secret? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,8 @@ class DetailActivity : AppCompatActivity() {
             intent.putExtra(MainActivity.ITEM_ID, item!!.id)
             startActivity(intent)
         }
+
+        secret = Secret()
     }
 
     public override fun onResume() {
@@ -47,7 +51,7 @@ class DetailActivity : AppCompatActivity() {
             applicationContext,
             AppDatabase::class.java,
             "celatum"
-        ).allowMainThreadQueries().build()
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
 
         val itemId = intent.getIntExtra(MainActivity.ITEM_ID, 0)
         item = db.itemDao()?.findById(itemId)
@@ -60,8 +64,8 @@ class DetailActivity : AppCompatActivity() {
         val edited = Date(item!!.editedTs!!)
 
         mDetailIcon!!.setImageResource(Tools.getIcon(item!!.icon))
-        mDetailTitle!!.text = item!!.title
-        mDetailDescription!!.text = item!!.description
+        mDetailTitle!!.text = secret?.decryptText(item!!.title!!, item!!.titleIV!!)
+        mDetailDescription!!.text = secret?.decryptText(item!!.description!!, item!!.descriptionIV!!)
         mDetailEdited!!.text = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT).format(edited)
     }
 }

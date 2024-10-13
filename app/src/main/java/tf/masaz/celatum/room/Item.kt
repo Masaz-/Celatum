@@ -1,4 +1,4 @@
-package fi.masaz.celatum.room
+package tf.masaz.celatum.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -12,8 +12,14 @@ class Item {
     @ColumnInfo(name = "title")
     var title: String? = null
 
+    @ColumnInfo(name = "title_iv")
+    var titleIV: ByteArray? = null
+
     @ColumnInfo(name = "description")
     var description: String? = null
+
+    @ColumnInfo(name = "description_iv")
+    var descriptionIV: ByteArray? = null
 
     @ColumnInfo(name = "icon")
     var icon: String? = null

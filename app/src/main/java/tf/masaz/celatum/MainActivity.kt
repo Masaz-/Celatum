@@ -1,10 +1,11 @@
-package fi.masaz.celatum
+package tf.masaz.celatum
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,9 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room.databaseBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import fi.masaz.celatum.room.AppDatabase
-import fi.masaz.celatum.room.Item
+import tf.masaz.celatum.room.AppDatabase
+import tf.masaz.celatum.room.Item
+import tf.masaz.celatum.secret.Secret
 import java.util.concurrent.Executor
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
     private val tag = "celatum-main"
@@ -29,13 +32,12 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private var itemAdapter: ItemAdapter? = null
     private var db: AppDatabase? = null
     private var items: List<Item>? = null
+    private var authenticated: Boolean = false
+    private var secret: Secret? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or WindowManager.LayoutParams.FLAG_SECURE
-        )
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_main)
 
         val mNoItems = findViewById<TextView>(R.id.main_no_items)
@@ -44,17 +46,17 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         mItemList = findViewById(R.id.item_list)
         mItemList?.setLayoutManager(LinearLayoutManager(this))
 
+        secret = Secret()
+
         db = databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
             "celatum"
-        ).allowMainThreadQueries().build()
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
 
-        items = db!!.itemDao()!!.all
+        mNoItems.visibility = if (items == null || items?.isEmpty() == true) View.VISIBLE else View.GONE
 
-        mNoItems.visibility = if (items!!.isEmpty()) View.VISIBLE else View.GONE
-
-        itemAdapter = ItemAdapter(this)
+        itemAdapter = ItemAdapter(this, secret!!)
         mItemList?.adapter = itemAdapter
 
         executor = ContextCompat.getMainExecutor(this)
@@ -64,17 +66,21 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
-                    Toast.makeText(applicationContext, "Authentication error: $errString", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.authentication_error, errString), Toast.LENGTH_SHORT).show()
+                    exitProcess(0)
                 }
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(applicationContext, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
+
+                    findViewById<ProgressBar>(R.id.waiting).visibility = View.GONE
+                    authenticated = true
+                    loadList()
                 }
 
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Toast.makeText(applicationContext, "Authentication failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.authentication_failed), Toast.LENGTH_SHORT).show()
                 }
             })
 
@@ -107,9 +113,14 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun loadList() {
-        items = db!!.itemDao()!!.all
-        itemAdapter!!.setItemList(items!!)
-        findViewById<TextView>(R.id.main_no_items).visibility = if (items!!.isEmpty()) View.VISIBLE else View.GONE
+        if (authenticated)  {
+            items = db!!.itemDao()!!.all
+            itemAdapter!!.setItemList(items!!)
+            findViewById<TextView>(R.id.main_no_items).visibility = if (items?.isEmpty() == true) View.VISIBLE else View.GONE
+        }
+        else {
+            findViewById<TextView>(R.id.main_no_items).visibility = View.VISIBLE
+        }
     }
 
     companion object {

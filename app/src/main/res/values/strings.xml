@@ -21,4 +21,6 @@
     <string name="are_you_sure_delete_item">Are you sure you want to delete this item?</string>
     <string name="use_biometric_to_access_data">Use biometric to access data</string>
     <string name="item_deleted">Item %1$s has been deleted</string>
+    <string name="authentication_error">Authentication error: %1$s</string>
+    <string name="authentication_failed">Authentication failed</string>
 </resources>
